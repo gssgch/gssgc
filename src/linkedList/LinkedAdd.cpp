@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <tchar.h>
 #include<stdlib.h>
+
 /**
  *  链表相加练习
  *  两个链表，表示两个非负整数。数字逆序存储在链表中，每个结点存储一个数字，计算两个数的和，返回和的链表头指针。
@@ -8,6 +9,7 @@
 typedef struct tagSNode {
     int value;
     tagSNode *pNext;
+
 //    下面这个相当于构造函数
     tagSNode(int v) : value(v), pNext(NULL) {}
 } SNode;
@@ -16,7 +18,9 @@ typedef struct tagSNode {
 
 //    声明函数
 SNode *Add(SNode *pHead1, SNode *pHead2);
+
 void Print(SNode *pHead1);
+
 void Destroy(SNode *pHead1);
 
 int _tmain(int argc, _TCHAR *argv[]) {
@@ -60,18 +64,18 @@ SNode *Add(SNode *pHead1, SNode *pHead2) {
     int value;
     while (p1 && p2) {
         value = p1->value + p2->value + carry;
-        carry = value / 10;
-        value %= 10;
+        carry = value / 10; // 高位的进位
+        value %= 10; // 当前位的值
         pCur = new SNode(value);
         pTail->pNext = pCur; // 新结点链接到pTail后面
-        pTail = pCur;
+        pTail = pCur; // 尾指针指向当前节点
 
         p1 = p1->pNext;// 处理下一位
         p2 = p2->pNext;
 
     }
 
-// 处理较长的链
+// 处理较长的链（此时短链为空了，长链非空）
     SNode *p = p1 ? p1 : p2;
     while (p) {
         value = p->value + carry;
@@ -86,7 +90,11 @@ SNode *Add(SNode *pHead1, SNode *pHead2) {
     if (carry != 0) {
         pTail->pNext = new SNode(carry);
     }
-    return pSum;
+//    printf("11111\n");
+//    Print(pTail);
+//    printf("111112\n");
+//    Print(pSum);
+    return pSum; // 此时psum与pTail一样的
 
 }
 
@@ -96,24 +104,37 @@ void Print(SNode *pHead) {
     {
         printf("PrintList函数执行，链表为空\n");
     } else {
+        pHead= pHead->pNext; // 去掉了头结点
         while (NULL != pHead) {
 
             printf("%d ", pHead->value);
             pHead = pHead->pNext;
-            if (pHead != NULL){
+            if (pHead != NULL) {
                 printf("%s ", "->");
             }
         }
         printf("\n");
     }
 }
+
 void Destroy(SNode *head) {
-    SNode *p,*q;
-    p=head;
-    while (p->pNext!=NULL) {
-        q=p->pNext;
-        p->pNext=q->pNext;
+    SNode *p, *q;
+    p = head;
+    while (p->pNext != NULL) {
+        q = p->pNext;
+        p->pNext = q->pNext;
         free(q);
     }
     free(p);
 }
+
+// 老师版destroy
+/*
+void Destroy(SNode *p) {
+    SNode *next;
+    while (p) {
+        next = p->pNext;
+        delete p;
+        p=next;
+    }
+}*/
