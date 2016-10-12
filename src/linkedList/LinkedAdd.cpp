@@ -29,13 +29,13 @@ int _tmain(int argc, _TCHAR *argv[]) {
     for (i = 0; i < 6; i++) {
         SNode *p = new SNode(rand() % 10);
         /* 下面使用的是头插法   头插法 插入一个节点的时间复杂度是O(1)
-         *  假定pHead1已经有若干节点，把p的next指向pHead的next，
+         *  假定pHead1已经有若干节点，把p的next也指向pHead的next，
          *  然后把phead本来的next断掉，指向p
          *  这样就相当于在前面插入了一个节点p
          *  在java语法里是赋值，在这里是指指针的指向，就是前面指向后面。
          * */
-        p->pNext = pHead1->pNext;
-        pHead1->pNext = p; // 把新结点p插入到表pHead1中，即pHead指向p节点
+        p->pNext = pHead1->pNext; // p的next 指向 pHead1的next
+        pHead1->pNext = p; // 把pHead1指向的结点断掉，改为指向p节点
     }
     SNode *pHead2 = new SNode(0); // 这里创建的头结点的唯一意义就是拿到pNext指针
     for (i = 0; i < 9; i++) {
@@ -106,7 +106,6 @@ void Print(SNode *pHead) {
     } else {
         pHead= pHead->pNext; // 去掉了头结点
         while (NULL != pHead) {
-
             printf("%d ", pHead->value);
             pHead = pHead->pNext;
             if (pHead != NULL) {
