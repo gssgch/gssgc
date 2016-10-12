@@ -49,14 +49,15 @@ void Partition(SNode *pHead,int pivotKey) {
     SNode* right = pRightHead;
     SNode* p = pHead->pNext;
     while (p) { // 遍历原链表
-        if(p->value<pivotKey){
-            left->pNext=p;
-            left=p;
-        } else{
-            right->pNext=p;
-            right=p;
+        if (p->value < pivotKey) {
+            left->pNext = p;
+            left = p;
+        } else {
+            right->pNext = p;
+            right = p;
         }
-        p=p->pNext;
+        p = p->pNext;
+    }
         // 将right链接到left尾部
         left->pNext=pRightHead->pNext;
         right->pNext=NULL;
@@ -66,7 +67,6 @@ void Partition(SNode *pHead,int pivotKey) {
 
         delete pLeftHead;
         delete pRightHead;
-    }
 }
 
 // 打印链表
