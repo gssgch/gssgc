@@ -25,7 +25,7 @@ void Destroy(SNode *pHead);
 
 int _tmain(int argc, _TCHAR *argv[]) {
     SNode *pHead = new SNode(0);
-    pHead->pNext=NULL;
+//    pHead->pNext=NULL;
     for (int i = 0; i < 10; i++) {
         SNode *p = new SNode(rand()%100);
         p->pNext = pHead->pNext;
@@ -44,7 +44,7 @@ void Partition(SNode *pHead,int pivotKey) {
     SNode *pLeftHead = new SNode(0);
     SNode *pRightHead = new SNode(0);
 
-    // 两个链表的当前最后一个元素
+    // 两个链表的当前最后一个元素(就是尾结点)
     SNode* left = pLeftHead;
     SNode* right = pRightHead;
     SNode* p = pHead->pNext;
@@ -58,9 +58,9 @@ void Partition(SNode *pHead,int pivotKey) {
         }
         p = p->pNext;
     }
-        // 将right链接到left尾部
-        left->pNext=pRightHead->pNext;
-        right->pNext=NULL;
+    // 将right链接到left尾部
+    left->pNext=pRightHead->pNext;
+    right->pNext=NULL;
 
         // 将整理好的链表赋值给当前链表头部
         pHead->pNext=pLeftHead->pNext;

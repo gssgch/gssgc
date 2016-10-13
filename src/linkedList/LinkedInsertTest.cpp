@@ -46,17 +46,17 @@ int _tmain(int argc, _TCHAR *argv[]) {
     Print(pHead);*/
 
     // 尾插法
-    pHead = NULL;
+    pHead = NULL;// 头结点
     SNode *end;
     end = NULL; // 尾指针置为空
     for (i = 0; i < 10; i++) {
         SNode *p = new SNode(i);
         if (pHead == NULL) {
-            pHead = p;
+            pHead = p; // 新结点定义为头
         } else {
-            end->pNext = p;
+            end->pNext = p;  // 表尾终端结点的指针指向新结点
         }
-        end = p;
+        end = p; // 当前新结点定义为表尾终端结点
     }
     if (end != NULL){
         end->pNext = NULL;
