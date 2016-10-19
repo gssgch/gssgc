@@ -31,7 +31,7 @@ int _tmain(int argc, _TCHAR *argv[]) {
 }
 // 重复字符的全排列递归算法时间复杂度 O((n+1)!)
 void Permutation(int *a, int size, int n) {
-    if (n == size - 1) {  // 到最后一位了，全排列的一个节，打印看看
+    if (n == size - 1) {
         Print(a, size);
         return;
     }
