@@ -13,15 +13,15 @@ using namespace std;
 
 //    声明函数
 int FindMin(int *p, int size);
-
 //
 int _tmain(int argc, _TCHAR *argv[]) {
-    int a[] = {3, 5, 1, 2,7, 4, 8};
+    int a[] = {3, 5, 6,  7, 14, 18};
     int m = FindMin(a, sizeof(a) / sizeof(int));
     std::cout << m << std::endl;
     return 0;
 }
 
+// 时间复杂度O(logN) 空间复杂度O(1)
 int FindMin(int *num, int size) {
     int low = 0;
     int high = size - 1;
