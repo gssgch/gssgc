@@ -66,7 +66,7 @@ memset(result,0, sizeof(int)*size);
 }
 void Print(const int* a,int size){
     for (int i = 0; i <size ; ++i) {
-        std::cout<< a[i]<<'  ';
+        std::cout << a[i] << '  ';
     }
     std::cout<<std::endl;
 }
